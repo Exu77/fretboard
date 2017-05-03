@@ -1,0 +1,103 @@
+$fretW: 70px;
+$firstW: 40px;
+$fretH: 35px;
+$noteW: $fretH - 10;
+
+.fretboard-app {
+	margin-left: 10px;
+	margin-right: 10px;
+  	
+	.fretboard-info {
+		font-size: 14px;
+		display: flex;
+
+		.first-fret {
+			width: $firstW;
+			height: $fretH;
+			background-color: inherit;
+		}
+
+		.fret {
+			text-align: right;
+			width: $fretW;
+			height: $fretH;
+			background-color: cyan;
+
+		}
+	}
+	.fretboard {
+		position: relative;
+		.first-fret {
+			width: $firstW;
+			height: $fretH;
+			background-color: black;
+		}
+
+		.string {
+			display: flex;
+
+			.first-fret {
+				width: $firstW;
+				height: $fretH;
+				background-color: black;
+			}
+
+			.fret {
+				width: $fretW;
+				height: $fretH;
+				background-image: url('../../imgs/fretNorm.png');
+				background-repeat: no-repeat;
+				background-size: 100%;
+
+				&.fret-pu {
+					background-image: url('../../imgs/fretPu.png');
+				}
+				&.fret-pd {
+					background-image: url('../../imgs/fretPd.png');
+				}
+			}
+		}
+
+		.displ-notes {
+			@for $i from 0 through 11 {
+				@for $j from 0 through 25 {
+					.fret-#{$i}-#{$j} {
+						position: absolute;
+						height: $noteW;
+						width: $noteW;
+						background-color: red;
+						top: $fretH*($i - 1) + (($fretH - $noteW)/2);
+						left: $firstW + ($fretW * ($j - 1)) - ($noteW/2);
+						font-size: 14px;
+						border-radius: $noteW;
+						.content {
+							position: relative;
+							text-align: center;
+							top: 4px;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	.settings-bottom {
+		.setting-group {
+			display: flex;
+			.setting {
+				cursor: pointer;
+				background-color: antiquewhite;
+				padding-right: 4px;
+				padding-left: 4px;
+				margin-right: 4px;
+				margin-bottom: 4px;
+				&.selected {
+					background-color: gray;
+				}
+				&:hover {
+					background-color: lightgray;
+				}
+			}
+		}
+	}
+}

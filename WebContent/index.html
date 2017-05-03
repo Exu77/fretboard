@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html ng-app="fretboardApp">
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Fretboard Solohelper</title>
+	<link rel="stylesheet" href="..\node_modules\angular-material\angular-material.css"></link>
+	<link rel="stylesheet" href="..\WebContent\scss\css\custom.css"></link>
+	<script src="..\node_modules\angular\angular.js"> </script>
+	<script src="..\node_modules\angular-animate\angular-animate.js"> </script>
+	<script src="..\node_modules\angular-aria\angular-aria.js"> </script>
+	<script src="..\node_modules\angular-material\angular-material.js"> </script>
+	<script src="scripts\app.js"> </script>
+</head>
+<body ng-controller="FretboardController">>
+<h1>hello world</div>
+<div class="fretboard-app">
+	<div class="fretboard-info">
+    	<div class="first-fret"></div>
+    	<div class="fret fret{{$index+1}}" ng-repeat="i in getNumberArray(24) track by $index">
+    	{{$index+1}}
+    	</div>
+	</div>
+	<div class="fretboard">
+		<div class="string string{{$index}}" ng-repeat="aStr in strings track by $index">
+		    <div class="first-fret"></div>
+			<div class="fret fret{{$index+1}} {{getHighlightClass(aStr.stringPos, $index+1)}}" ng-repeat="i in getNumberArray(24) track by $index"></div>
+			<div class="first-fret"></div>
+		</div>
+		
+		<div class="displ-notes">
+			<div ng-repeat="aStr in notes2Displ">
+				<div ng-repeat="aNote in aStr track by $index">
+					<div ng-hide="!aNote" class="fret-{{$parent.$index+1}}-{{$index}}">
+						<div class="content">{{aNote}}</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="settings-bottom">
+		<div>Key</div>
+		<div class="setting-group">
+			<div class="setting"
+				 ng-class="{'selected':aNote===currentKey}"
+				 ng-click="setCurrentKey(aNote)"
+				 ng-repeat="aNote in notes">
+				{{aNote}}
+			</div>
+		</div>
+		<div class="setting-group">
+			<div class="setting"
+				 ng-class="{'selected':isMajor}"
+				 ng-click="setIsMajor(true)">Major</div>
+			<div class="setting"
+				 ng-class="{'selected':!isMajor}"
+				 ng-click="setIsMajor(false)">Minor</div>
+		</div>
+
+	</div>
+</div>
+	
+</body>
+</html>
