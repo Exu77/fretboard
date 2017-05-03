@@ -8,19 +8,22 @@ $noteW: $fretH - 10;
 	margin-right: 10px;
   	
 	.fretboard-info {
-		font-size: 14px;
+		font-size: 20px;
 		display: flex;
 
 		.first-fret {
-			width: $firstW;
-			height: $fretH;
+			min-width: $firstW;
+			min-height: $fretH;
 			background-color: inherit;
 		}
 
 		.fret {
+			margin-right: 1px;
+			top: 4px;
 			text-align: right;
-			width: $fretW;
-			height: $fretH;
+			padding-right: 4px;
+			min-width: $fretW - 5px;
+			min-height: $fretH;
 			background-color: cyan;
 
 		}
@@ -37,14 +40,14 @@ $noteW: $fretH - 10;
 			display: flex;
 
 			.first-fret {
-				width: $firstW;
-				height: $fretH;
+				min-width: $firstW;
+				min-height: $fretH;
 				background-color: black;
 			}
 
 			.fret {
-				width: $fretW;
-				height: $fretH;
+				min-width: $fretW;
+				min-height: $fretH;
 				background-image: url('../../imgs/fretNorm.png');
 				background-repeat: no-repeat;
 				background-size: 100%;

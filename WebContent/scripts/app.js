@@ -17,7 +17,7 @@ fretboardApp.controller('FretboardController', function FretboardController($sco
 		  name: 'pentatonic'
 	  }};
 	  
-	  scalesDef[$scope.scKeys.pentatonic.name] = [2,2,3,2,3];
+	  scalesDef[$scope.scKeys.pentatonic.name] = [3,2,2,3,2];
 	  
 	  $scope.notes = ['A', 'A#', 'B', 'C', 'C#','D','D#','E','F','F#','G','G#'];
 
@@ -36,6 +36,13 @@ fretboardApp.controller('FretboardController', function FretboardController($sco
 	  function initScales(aKey) {
 		  var keyPos = getNotePos(aKey);
 		  var currentPos = keyPos;
+		  console.log('isMajor ' + $scope.isMajor)
+		  if ($scope.isMajor) {
+		  	currentPos -= 3;
+		  	if (currentPos < 0) {
+		  		currentPos = $scope.notes.length - currentPos - 1;
+			}
+		  }
 		  // Pentatonic Scale
 		  var currentScale = {
 				  arr: [aKey], 
